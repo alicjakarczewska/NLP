@@ -25,7 +25,42 @@ print(type(my_doc))
 # Zadanie 1. Liczba zdan
 print("Zadanie 1. Liczba zdan: {}".format(len(list(my_doc.sents))))
 
-# Printing the tokens of a doc
+# Zadanie 2. Liczba tokenow
+tokenizer = nlp.tokenizer
+tokens = tokenizer(my_text)
+print("Zadanie 2. Liczba tokenow: {}".format(len(tokens)))
+
+# Zadanie 3. Srednia liczba tokenow w zdaniu
+print("Zadanie 3. Srednia liczba tokenow w zdaniu: {}".format(
+  (len(tokens) / len(list(my_doc.sents)))
+))
+
+# Zadanie 4. Liczba rzeczowników, czasowników, przymiotników i przysłówków
+
+nounNumber = 0
+verbNumber = 0
+adjNumber = 0
+advNumber = 0
+
+for token in my_doc:
+    if token.pos_ == 'NOUN':
+        nounNumber = nounNumber + 1
+    if token.pos_ == 'VERB':
+        verbNumber = verbNumber + 1
+    if token.pos_ == 'ADJ':
+        adjNumber = adjNumber + 1
+    if token.pos_ == 'ADV':
+        advNumber = advNumber + 1
+print("Zadanie 4. \nWersja nr 1:")
+
+print("Liczba rzeczownikow: {}".format(nounNumber))
+print("Liczba czasownikow: {}".format(verbNumber))
+print("Liczba przymiotnikow: {}".format(adjNumber))
+print("Liczba przysłowkow: {}".format(advNumber))
+
+print("Wersja nr 2:")
+all_tags = {token.pos: token.pos_ for token in my_doc}
+print(all_tags)
 
 # # Printing tokens and boolean values stored in different attributes
 # for token in my_doc:
