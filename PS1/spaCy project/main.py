@@ -1,3 +1,5 @@
+# tutorial source: https://www.machinelearningplus.com/spacy-tutorial-nlp/
+
 # Before run code install:
 # pip3 install spacy
 # python -m spacy download en_core_web_sm
