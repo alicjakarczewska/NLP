@@ -51,16 +51,47 @@ for token in my_doc:
         adjNumber = adjNumber + 1
     if token.pos_ == 'ADV':
         advNumber = advNumber + 1
-print("Zadanie 4. \nWersja nr 1:")
 
+print("Zadanie 4.")
 print("Liczba rzeczownikow: {}".format(nounNumber))
 print("Liczba czasownikow: {}".format(verbNumber))
 print("Liczba przymiotnikow: {}".format(adjNumber))
 print("Liczba przysłowkow: {}".format(advNumber))
 
-print("Wersja nr 2:")
-all_tags = {token.pos: token.pos_ for token in my_doc}
-print(all_tags)
+
+# Zadanie. 5
+# 5 najczęściej występujących rzeczowników w podstawowej formie (lematyzacja)
+words = [token.text
+         for token in my_doc
+         if not token.is_stop and not token.is_punct]
+
+# noun tokens that arent stop words or punctuations
+nouns = [token.text
+         for token in my_doc
+         if (not token.is_stop and
+             not token.is_punct and
+             token.pos_ == "NOUN")]
+print(len(nouns))
+
+nouns_lemma = [token.lemma_
+              for token in my_doc
+              if (not token.is_stop and
+             not token.is_punct and
+             token.pos_ == "NOUN")]
+
+from collections import Counter
+
+# five most common noun tokens
+nouns_lemma_freq = Counter(nouns_lemma)
+common_nouns_lemma = nouns_lemma_freq.most_common(5)
+
+print(common_nouns_lemma)
+
+# five most common noun tokens
+noun_freq = Counter(nouns)
+common_nouns = noun_freq.most_common(5)
+
+print(common_nouns)
 
 # # Printing tokens and boolean values stored in different attributes
 # for token in my_doc:
