@@ -58,7 +58,7 @@ print("Liczba czasownikow: {}".format(verbNumber))
 print("Liczba przymiotnikow: {}".format(adjNumber))
 print("Liczba przysłowkow: {}".format(advNumber))
 
-
+print("Zadanie 5.")
 # Zadanie. 5
 # 5 najczęściej występujących rzeczowników w podstawowej formie (lematyzacja)
 words = [token.text
@@ -93,10 +93,6 @@ common_nouns = noun_freq.most_common(5)
 
 print("5 najczęściej występujących rzeczowników:")
 print(common_nouns)
-print("Podstawowe formy 5 najczęściej występujących rzeczowników:")
-lemmatizer = nlp.vocab.morphology.lemmatizer
-for noun in common_nouns:
-  print(lemmatizer(noun[0], 'NOUN'))
 
 # # Printing tokens and boolean values stored in different attributes
 # for token in my_doc:
