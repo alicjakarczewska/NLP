@@ -71,13 +71,12 @@ nouns = [token.text
          if (not token.is_stop and
              not token.is_punct and
              token.pos_ == "NOUN")]
-print(len(nouns))
 
 nouns_lemma = [token.lemma_
               for token in my_doc
               if (not token.is_stop and
-             not token.is_punct and
-             token.pos_ == "NOUN")]
+              not token.is_punct and
+              token.pos_ == "NOUN")]
 
 from collections import Counter
 
@@ -85,13 +84,19 @@ from collections import Counter
 nouns_lemma_freq = Counter(nouns_lemma)
 common_nouns_lemma = nouns_lemma_freq.most_common(5)
 
+print("5 najczęściej występujących rzeczowników w podstawowej formie (lematyzacja):")
 print(common_nouns_lemma)
 
 # five most common noun tokens
 noun_freq = Counter(nouns)
 common_nouns = noun_freq.most_common(5)
 
+print("5 najczęściej występujących rzeczowników:")
 print(common_nouns)
+print("Podstawowe formy 5 najczęściej występujących rzeczowników:")
+lemmatizer = nlp.vocab.morphology.lemmatizer
+for noun in common_nouns:
+  print(lemmatizer(noun[0], 'NOUN'))
 
 # # Printing tokens and boolean values stored in different attributes
 # for token in my_doc:
