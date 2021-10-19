@@ -118,6 +118,13 @@ dep2 = [token.text for token in my_doc
     token.pos_ == "ADJ"    
     )]
 
+# dependencies to second most common word
+dep3 = [token.text for token in my_doc 
+  if(
+    str(token.head) == str(doc_nouns[2]) and
+    token.pos_ == "ADJ"    
+    )]
+
 print("Przymiotniki do {}: {}".format(doc_nouns[0], dep1))
 print("Przymiotniki do {}: {}".format(doc_nouns[1], dep2))
-
+print("Przymiotniki do {}: {}".format(doc_nouns[2], dep3))
