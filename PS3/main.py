@@ -23,8 +23,6 @@ chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
 # drop blank lines
 text = '\n'.join(chunk for chunk in chunks if chunk)
 
-print(text)
-
 import re
 regex = '\d:\d{2}:\d{2}'
 results = re.findall(regex, text)
