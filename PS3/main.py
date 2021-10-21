@@ -24,7 +24,7 @@ chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
 text = '\n'.join(chunk for chunk in chunks if chunk)
 
 import re
-regex = '\d:\d{2}:\d{2}'
+regex = '2:\d{2}:\d{2}'
 results = re.findall(regex, text)
 
 print(results)
