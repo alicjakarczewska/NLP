@@ -48,7 +48,6 @@ Consultants
 Los
 Altos
 California
- 
 later
 stemmer
 written
@@ -80,7 +79,6 @@ work
 stemming
 information
 retrieval
- 
 implementations
 Porter
 stemming
@@ -126,7 +124,6 @@ English
 stemmer
 stemmers
 languages
- 
 Paice
 Husk
 Stemmer

@@ -26,7 +26,7 @@ The Paice-Husk Stemmer was developed by Chris D Paice at Lancaster University in
 """
 
 # my_doc = nlp(my_text)
-my_doc = nlp(my_text.replace("\n", " "))
+my_doc = nlp(my_text.replace("\n", ""))
 # Removing StopWords and punctuations
 my_doc_cleaned = [token for token in my_doc if not token.is_stop and not token.is_punct]
 
@@ -36,17 +36,40 @@ for token in my_doc_cleaned:
 f.close()
 
 f = open("slownik.txt", "r")
-print(f.read())
+my_dict = f.read()
 f.close()
 
-print(len(my_doc))
-print(len(my_doc_cleaned))
+# changes in dict - 1 to 3 modifications in 20% words
+import random 
+def xrange(x):
+  return iter(range(x))
+
+indices = [0]
+for i in range(1, len(my_dict)):
+  indices.append(indices[i-1] + 1)
+
+percentage = 0.8
+k = len(my_dict) * percentage 
+indicies = random.sample(indices, k)
+print("--------------------")
+print(len(my_dict))
+print(len(indicies))
+print(indicies)
+# new_my_dict = [my_dict[i] for i in indicies]
+
+
+# print(len(my_doc))
+# print(len(my_doc_cleaned))
 # for token in my_doc_cleaned:
 #   if token.text == "\n":
 #     print("A")
 #   if token.text == " ":
 #     print("B")
 
+# f = open("slownik.txt", "w")
+# for token in my_doc_cleaned:
+#   f.write(token.text+"\n")
+# f.close()
 
 
 
