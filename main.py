@@ -25,37 +25,61 @@ Many implementations of the Porter stemming algorithm were written and freely di
 The Paice-Husk Stemmer was developed by Chris D Paice at Lancaster University in the late 1980s, it is an iterative stemmer and features an externally stored set of stemming rules. The standard set of rules provides a 'strong' stemmer and may specify the removal or replacement of an ending. The replacement technique avoids the need for a separate stage in the process to recode or provide partial matching. Paice also developed a direct measurement for comparing stemmers based on counting the over-stemming and under-stemming errors.
 """
 
-# my_doc = nlp(my_text)
-my_doc = nlp(my_text.replace("\n", ""))
-# Removing StopWords and punctuations
-my_doc_cleaned = [token for token in my_doc if not token.is_stop and not token.is_punct]
+# # my_doc = nlp(my_text)
+# my_doc = nlp(my_text.replace("\n", ""))
+# # Removing StopWords and punctuations
+# my_doc_cleaned = [token for token in my_doc if not token.is_stop and not token.is_punct]
 
-f = open("slownik.txt", "w")
-for token in my_doc_cleaned:
+# f = open("slownik.txt", "w")
+# for token in my_doc_cleaned:
+#   f.write(token.text+"\n")
+# f.close()
+
+f = open("slownik.txt", "r")
+
+my_dict = []
+read_file = f.read()
+for word in read_file:
+  my_dict.append(word)
+f.close()
+
+changed_dict = my_dict
+
+
+# losowanie 20% slow do zmiany
+import random
+
+bef_indices = [0]
+for i in range(1, len(my_dict)):
+  bef_indices.append(bef_indices[i-1] + 1)
+
+percentage = 0.2
+k = len(my_dict)*percentage 
+indicies = random.sample(bef_indices, int(k))
+
+import string
+
+def charge_char_in_word(word):
+  word[random.randrange(len(word))] = random.choice(string.ascii_letters)
+
+# zmiana w wyrazach pod wylosowanymi indeksami (1-3 modyfikacje)
+
+for i in indicies:  
+  how_many = random.randrange(3)
+  # zmiana znaku
+  changed_dict[i] = charge_char_in_word(changed_dict[i])
+  # usuniecie znaku
+  if how_many > 0:
+    changed_dict[i] = changed_dict[:-1]
+  # dodanie znaku
+  if how_many > 1:
+    changed_dict[i] = changed_dict + random.choice(string.ascii_letters)
+
+f = open("przyklad_z_bledami.txt", "w")
+for token in changed_dict:
   f.write(token.text+"\n")
 f.close()
 
-f = open("slownik.txt", "r")
-my_dict = f.read()
-f.close()
-
-# changes in dict - 1 to 3 modifications in 20% words
-import random 
-def xrange(x):
-  return iter(range(x))
-
-indices = [0]
-for i in range(1, len(my_dict)):
-  indices.append(indices[i-1] + 1)
-
-percentage = 0.8
-k = len(my_dict) * percentage 
-indicies = random.sample(indices, k)
-print("--------------------")
-print(len(my_dict))
-print(len(indicies))
-print(indicies)
-# new_my_dict = [my_dict[i] for i in indicies]
 
 
 # print(len(my_doc))
