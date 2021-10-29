@@ -9,7 +9,6 @@
 # - w 20% wylosowanych słów w pliku przyklad.txt dokona od jednej do trzech modyfikacji w postaci: zamiany litery, usunięcia litery, dodania litery. Zamieniony tekst zapisze do pliku przyklad_z_bledami.txt
 # - poprawi błędy w pliku przyklad_z_bledami.txt wyszukując słowa najbliższe w pliku slownik.txt używając odległości edycyjnej i zapisze wynik do pliku przyklad_poprawiony.txt
 # - obliczy ilość błędów które pozostaly po poprawieniu porównując wynik z plikiem oryginalnym
-# Do podziału tekstu na słowa wykorzystaj jedną z bibliotek NLP.  Jako rozwiązanie wgraj tylko swój program.
 
 import spacy
 nlp=spacy.load("en_core_web_sm")
