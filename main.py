@@ -34,10 +34,12 @@ for token in my_doc_cleaned:
 f.close()
 
 changed_dict=[]
+before_words=[]
 with open('slownik.txt','r') as file: 
     for line in file:   
         for word in line.split():         
             changed_dict.append(word) 
+            before_words.append(word) 
 
 # losowanie 20% slow do zmiany
 import random
@@ -65,9 +67,9 @@ for i in indicies:
   character = random.choice(string.ascii_letters)
   word = changed_dict[i]
   changed_dict[i] = ''.join((word, character))
-  # usuniecie znaku
+  # usuniecie znakow
   if how_many > 0:
-    changed_dict[i] = changed_dict[i][:-2]
+    changed_dict[i] = changed_dict[i][:-3]
   # zmiana znaku
   if how_many > 1:
     character = random.choice(string.ascii_letters)
@@ -79,6 +81,23 @@ for word in changed_dict:
   f.write(word+"\n")
 f.close()
 
+import difflib
 
+corrected_words = []
 
+f = open("przyklad_poprawiony.txt", "w")
+for word in changed_dict:  
+  best_match = (difflib.get_close_matches(word, before_words, 1) or [""])[0]
+  # print(word+"\t"+best_match)
+  f.write(best_match+"\n")
+  corrected_words.append(best_match)
+f.close()
+
+errors = 0
+for i in range(0,len(corrected_words)):
+  # print("score for: " + corrected_words[i] + " vs. " + before_words[i] + " = " + str(difflib.SequenceMatcher(None, corrected_words[i], before_words[i]).ratio()))
+  if(corrected_words[i] != before_words[i]):
+    errors += 1
+  
+print("Liczba bledow: "+str(errors))
 
