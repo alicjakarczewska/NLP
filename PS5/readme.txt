@@ -1,0 +1,1 @@
+Before running the program, unpack the bbc-fulltext.zip here.
